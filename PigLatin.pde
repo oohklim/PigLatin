@@ -37,25 +37,17 @@ public int findFirstVowel(String sWord) {
 }
 public boolean containsCapital(String sWord) {
     for (int i = 0; i < sWord.length(); i++) {
-        if (isCapital(sWord.substring(i, i + 1))) {
+        if (isCapital(sWord.charAt(i))) {
             return true;
         }
     }
     return false;
 }
 public boolean isVowel(String sWord) {
-    return (sWord.equals("a") || sWord.equals("e") || sWord.equals("i") ||
-        sWord.equals("o") || sWord.equals("u") || sWord.equals("A") || 
-        sWord.equals("E") || sWord.equals("I") || sWord.equals("O") || 
-        sWord.equals("U"));
+    return sWord.matches("[aeiouAEIOU]");
 }
-public boolean isCapital(String sWord) {
-    return (sWord.equals("A") || sWord.equals("B") || sWord.equals("C") ||
-        sWord.equals("D") || sWord.equals("E") || sWord.equals("F") || sWord.equals("G") || sWord.equals("H") ||
-        sWord.equals("I") || sWord.equals("J") || sWord.equals("K") || sWord.equals("L") || sWord.equals("M") ||
-        sWord.equals("N") || sWord.equals("O") || sWord.equals("P") || sWord.equals("Q") || sWord.equals("R") ||
-        sWord.equals("S") || sWord.equals("T") || sWord.equals("U") || sWord.equals("V") || sWord.equals("W") ||
-        sWord.equals("X") || sWord.equals("Y") || sWord.equals("Z"));
+public boolean isCapital(Character ch) {
+    return Character.isUpperCase(ch);
 }
 public String pigLatin(String sWord) {
     //precondition: sWord is a valid String of length greater than 0
@@ -67,7 +59,7 @@ public String pigLatin(String sWord) {
     } else if (sWord.substring(0, 2).equals("qu") || sWord.substring(0, 2).equals("Qu")) {
         return sWord.substring(2) + "quay";
     } else if (findFirstVowel(sWord) != 0) {
-    	if (isCapital(sWord.substring(0, 1))) {
+    	if (isCapital(sWord.charAt(0))) {
     		return sWord.substring(findFirstVowel(sWord), findFirstVowel(sWord) + 1).toUpperCase() + 
     			sWord.substring(findFirstVowel(sWord) + 1) + sWord.substring(0, findFirstVowel(sWord)).toLowerCase() + "ay";
     	} else {
