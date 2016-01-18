@@ -4,8 +4,8 @@ public void setup() {
     String lines[] = loadStrings("words.txt");
     String hymn[] = loadStrings("LowellHymn.txt");
     System.out.println("there are " + lines.length + " lines");
+    //takes care of empty lines
     for (int i = 0 ; i < lines.length; i++) {
-        //takes care of empty
         System.out.println(pigLatin(lines[i]));
     }
     System.out.println();
