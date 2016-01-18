@@ -5,21 +5,22 @@ public void setup() {
     String hymn[] = loadStrings("LowellHymn.txt");
     System.out.println("there are " + lines.length + " lines");
     for (int i = 0 ; i < lines.length; i++) {
-      System.out.println(pigLatin(lines[i]));
+        //takes care of empty
+        System.out.println(pigLatin(lines[i]));
     }
     System.out.println();
     for (int i = 0; i < hymn.length; i++) {
         String pigText = hymn[i];
-        int iTemp = 0;
+        int wordStart = 0;
         if (hymn[i].equals("")) {
             System.out.println("");
         }
         for (int j = 0; j < pigText.length(); j++) {
             if (pigText.substring(j, j + 1).equals(" ")) {
-                System.out.print(pigLatin(pigText.substring(iTemp, j)) + " ");
-                iTemp = j + 1;
+                System.out.print(pigLatin(pigText.substring(wordStart, j)) + " ");
+                wordStart = j + 1;
             } else if (pigText.substring(j, j + 1).equals(",") || pigText.substring(j, j + 1).equals(".")) {
-                System.out.println(pigLatin(pigText.substring(iTemp, j)) + pigText.substring(j, j + 1));
+                System.out.println(pigLatin(pigText.substring(wordStart, j)) + pigText.substring(j, j + 1));
                 break;
             }
         }
@@ -51,12 +52,9 @@ public String pigLatin(String sWord) {
     if (sWord.startsWith("qu") || sWord.startsWith("Qu")) {
         return sWord.substring(2) + "quay";
     } 
-    if (firstVowelIndex != 0) {
-    	if (Character.isUpperCase(sWord.charAt(0))) {
-    		return sWord.substring(firstVowelIndex, firstVowelIndex + 1).toUpperCase() + 
-    			sWord.substring(firstVowelIndex + 1) + sWord.substring(0, firstVowelIndex).toLowerCase() + "ay";
-    	} 
-    	return sWord.substring(firstVowelIndex) + sWord.substring(0, firstVowelIndex) + "ay"; 
-    }
-    return "ERROR!";
+    if (Character.isUpperCase(sWord.charAt(0))) {
+    	return sWord.substring(firstVowelIndex, firstVowelIndex + 1).toUpperCase() + 
+    		sWord.substring(firstVowelIndex + 1) + sWord.substring(0, firstVowelIndex).toLowerCase() + "ay";
+    } 
+    return sWord.substring(firstVowelIndex) + sWord.substring(0, firstVowelIndex) + "ay"; 
 }
