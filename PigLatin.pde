@@ -12,12 +12,12 @@ public void setup() {
         String pigText = hymn[i];
         int wordStart = 0;
         for (int j = 0; j < pigText.length(); j++) {
-            if (wordStart < pigText.length()) {
+            if (wordStart < pigText.length() && wordStart < j) {
                 if (pigText.substring(j, j + 1).equals(" ")) {
-                System.out.print(pigLatin(pigText.substring(wordStart, j)) + " ");
-                wordStart = j + 1;
+                    System.out.print(pigLatin(pigText.substring(wordStart, j)) + " ");
+                    wordStart = j + 1;
                 } else if (pigText.substring(j, j + 1).equals(",") || pigText.substring(j, j + 1).equals(".")) {
-                    System.out.print(pigLatin(pigText.substring(wordStart, j)) + pigText.substring(j, j + 1));
+                    System.out.print(pigLatin(pigText.substring(wordStart, j)) + pigText.substring(j, j + 1) + " ");
                     wordStart = j + 2;
                 }
             }
