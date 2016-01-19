@@ -11,19 +11,18 @@ public void setup() {
     for (int i = 0; i < hymn.length; i++) {
         String pigText = hymn[i];
         int wordStart = 0;
-        if (hymn[i].equals("")) {
-            //takes care of empty lines
-            System.out.println("");
-        }
         for (int j = 0; j < pigText.length(); j++) {
-            if (pigText.substring(j, j + 1).equals(" ")) {
+            if (wordStart < pigText.length()) {
+                if (pigText.substring(j, j + 1).equals(" ")) {
                 System.out.print(pigLatin(pigText.substring(wordStart, j)) + " ");
                 wordStart = j + 1;
-            } else if (pigText.substring(j, j + 1).equals(",") || pigText.substring(j, j + 1).equals(".")) {
-                System.out.println(pigLatin(pigText.substring(wordStart, j)) + pigText.substring(j, j + 1));
-                break;
+                } else if (pigText.substring(j, j + 1).equals(",") || pigText.substring(j, j + 1).equals(".")) {
+                    System.out.print(pigLatin(pigText.substring(wordStart, j)) + pigText.substring(j, j + 1));
+                    wordStart = j + 2;
+                }
             }
         }
+        System.out.println();
     }   
 }
 public int findFirstVowel(String sWord) {
